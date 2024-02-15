@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Calculadora de Taxas</h1>
+
+<p>Use . invés de , para separar os reais dos centavos. Ex: R$100,95 você preenche: 100.95!</p>
+
+<form id="regForm" name="calc" onInput="calcular()">
+
+<label name="vt">Valor da compra: </label>                   
+<input type="text" id="vt" name="vt" value="" onblur="calcular()" class="formulacao" autocomplete="off" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d.]/'')" />
+
+<br /><br />
+<label name="tx">Taxa de Juros: </label>
+<input type="text" id="tx" name="tx" value="" onblur="calcular()" class="formulacao" autocomplete="off" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d.]/'')" /> (ao mês)
+
+<br /><br />
+<div id="resultado">
+<div class="resultado">PIX: <span id="pix"></span></div>
+<div class="resultado">1x: <span id="1x"></span></div>
+<div class="resultado">2x: <span id="2x"></span></div>
+<div class="resultado">3x: <span id="3x"></span></div>
+<div class="resultado">4x: <span id="4x"></span></div>
+<div class="resultado">5x: <span id="5x"></span></div>
+<div class="resultado">6x: <span id="6x"></span></div>
+</div>
+
+</form>
+
+<script>
+
+function calcular() {
+
+
+let x = document.forms["calc"]["vt"].value;
+
+let vt = parseFloat(document.getElementById('vt').value, 10);
+
+let tx = parseFloat(document.getElementById('tx').value, 10);
+
+
+if(tx){
+var taxa = x * tx / 100;
+} else{
+var taxa = x * 2.99 / 100;
+}
+
+var pix = x * 5 / 100;
+
+document.getElementById('pix').innerHTML = "R$" + Math.round(x - pix, 2);
+
+document.getElementById('1x').innerHTML = "R$" + (x * 1);
+
+document.getElementById('2x').innerHTML = "R$" + Math.round(x / 2 + taxa);
+
+document.getElementById('3x').innerHTML = "R$" + Math.round(x / 3 + taxa);
+
+document.getElementById('4x').innerHTML = "R$" + Math.round(x / 4 + taxa);
+
+document.getElementById('5x').innerHTML = "R$" + Math.round(x / 5 + taxa);
+
+document.getElementById('6x').innerHTML = "R$" + Math.round(x / 6 + taxa);
+
+}
+</script>
+
+</body>
+</html>
+
+
+
